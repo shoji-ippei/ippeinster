@@ -43,4 +43,10 @@ class User < ApplicationRecord
     self.email = email.downcase
   end
 
+  # 試作feedの定義
+  # 完全な実装は第12章「ユーザーをフォローする」を参照してください。
+  def feed
+    Micropost.where("user_id = ?", id)
+  end
+
 end
