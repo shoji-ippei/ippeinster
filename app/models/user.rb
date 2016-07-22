@@ -51,10 +51,12 @@ class User < ApplicationRecord
     self.email = email.downcase
   end
 
-  # 試作feedの定義
-  # 完全な実装は第12章「ユーザーをフォローする」を参照してください。
+  # ユーザーのステータスフィードを返す
   def feed
-    Micropost.where("user_id = ?", id)
+    following_ids = "SELECT followed_id FROM relationships
+                     WHERE  follower_id = :user_id"
+    Micropost.where("user_id IN (#{following_ids})
+                     OR user_id = :user_id", user_id: id)
   end
 
   # ユーザーをフォローする
