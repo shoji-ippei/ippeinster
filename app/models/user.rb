@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :microposts, dependent: :destroy
   attr_accessor :remember_token
   before_save   :downcase_email
   validates :name,  presence: true, length: { maximum: 50 }
@@ -42,6 +43,4 @@ class User < ApplicationRecord
     self.email = email.downcase
   end
 
-
-  has_many :microposts
 end
