@@ -3,12 +3,12 @@ require 'test_helper'
 class RelationshipTest < ActiveSupport::TestCase
 
   def setup
-    @relationship = Relationship.new(follower_id: 1, followed_id: 2)
+    user1 = users(:michael)
+    user2 = users(:archer)
+    @relationship = Relationship.new(follower_id: user1.id, followed_id: user2.id)
   end
 
   test "should be valid" do
-    p "test"
-    p @relationship.errors.to_json
     assert @relationship.valid?
   end
 
