@@ -7,6 +7,8 @@ class RelationshipTest < ActiveSupport::TestCase
   end
 
   test "should be valid" do
+    p "test"
+    p @relationship.errors.to_json
     assert @relationship.valid?
   end
 
