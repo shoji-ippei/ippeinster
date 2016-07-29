@@ -3,9 +3,8 @@ require 'test_helper'
 class RelationshipTest < ActiveSupport::TestCase
 
   def setup
-    user1 = users(:michael)
-    user2 = users(:archer)
-    @relationship = Relationship.new(follower_id: user1.id, followed_id: user2.id)
+    @relationship = Relationship.new(follower_id: users(:michael).id,
+                                     followed_id: users(:archer).id)
   end
 
   test "should be valid" do
